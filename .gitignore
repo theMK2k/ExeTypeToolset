@@ -1,0 +1,4 @@
+.vs/**/*
+ExeTypeToolset/bin/**/*
+ExeTypeToolset/obj/**/*
+ExeTypeToolset/ExeTypeToolset.vbproj.user

@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E45588DC-6E36-47BB-929C-001FA8A41EED}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <StartupObject>ExeTypeToolset.mdl_Main</StartupObject>
+    <RootNamespace>ExeTypeToolset</RootNamespace>
+    <AssemblyName>ExeTypeToolset</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Console</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ExeTypeToolset.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ExeTypeToolset.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ExeTypeToolset.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ExeTypeToolset.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlphaFS">
+      <HintPath>..\..\..\Libraries\MKNetLib\MKNetLib\Dependencies\AlphaFS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="mdl_Main.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="7z\7-zip.chm" />
+    <None Include="7z\7z.sfx" />
+    <None Include="7z\7zCon.sfx" />
+    <None Include="7z\descript.ion" />
+    <None Include="7z\Lang\en.ttt" />
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\MKNetLib\MKNetLib\MKNetLib.vbproj">
+      <Project>{5eff8642-cd3b-498f-a50f-6f05b47325e2}</Project>
+      <Name>MKNetLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dosidcli.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="7z\7-zip.dll" />
+    <Content Include="7z\7-zip32.dll" />
+    <Content Include="7z\7z.dll" />
+    <Content Include="7z\7z.exe" />
+    <Content Include="7z\7zFM.exe" />
+    <Content Include="7z\7zG.exe" />
+    <Content Include="7z\Formats\Iso7z.64.dll" />
+    <Content Include="7z\History.txt" />
+    <Content Include="7z\Lang\af.txt" />
+    <Content Include="7z\Lang\an.txt" />
+    <Content Include="7z\Lang\ar.txt" />
+    <Content Include="7z\Lang\ast.txt" />
+    <Content Include="7z\Lang\az.txt" />
+    <Content Include="7z\Lang\ba.txt" />
+    <Content Include="7z\Lang\be.txt" />
+    <Content Include="7z\Lang\bg.txt" />
+    <Content Include="7z\Lang\bn.txt" />
+    <Content Include="7z\Lang\br.txt" />
+    <Content Include="7z\Lang\ca.txt" />
+    <Content Include="7z\Lang\co.txt" />
+    <Content Include="7z\Lang\cs.txt" />
+    <Content Include="7z\Lang\cy.txt" />
+    <Content Include="7z\Lang\da.txt" />
+    <Content Include="7z\Lang\de.txt" />
+    <Content Include="7z\Lang\el.txt" />
+    <Content Include="7z\Lang\eo.txt" />
+    <Content Include="7z\Lang\es.txt" />
+    <Content Include="7z\Lang\et.txt" />
+    <Content Include="7z\Lang\eu.txt" />
+    <Content Include="7z\Lang\ext.txt" />
+    <Content Include="7z\Lang\fa.txt" />
+    <Content Include="7z\Lang\fi.txt" />
+    <Content Include="7z\Lang\fr.txt" />
+    <Content Include="7z\Lang\fur.txt" />
+    <Content Include="7z\Lang\fy.txt" />
+    <Content Include="7z\Lang\ga.txt" />
+    <Content Include="7z\Lang\gl.txt" />
+    <Content Include="7z\Lang\gu.txt" />
+    <Content Include="7z\Lang\he.txt" />
+    <Content Include="7z\Lang\hi.txt" />
+    <Content Include="7z\Lang\hr.txt" />
+    <Content Include="7z\Lang\hu.txt" />
+    <Content Include="7z\Lang\hy.txt" />
+    <Content Include="7z\Lang\id.txt" />
+    <Content Include="7z\Lang\io.txt" />
+    <Content Include="7z\Lang\is.txt" />
+    <Content Include="7z\Lang\it.txt" />
+    <Content Include="7z\Lang\ja.txt" />
+    <Content Include="7z\Lang\ka.txt" />
+    <Content Include="7z\Lang\kaa.txt" />
+    <Content Include="7z\Lang\kab.txt" />
+    <Content Include="7z\Lang\kk.txt" />
+    <Content Include="7z\Lang\ko.txt" />
+    <Content Include="7z\Lang\ku-ckb.txt" />
+    <Content Include="7z\Lang\ku.txt" />
+    <Content Include="7z\Lang\ky.txt" />
+    <Content Include="7z\Lang\lij.txt" />
+    <Content Include="7z\Lang\lt.txt" />
+    <Content Include="7z\Lang\lv.txt" />
+    <Content Include="7z\Lang\mk.txt" />
+    <Content Include="7z\Lang\mn.txt" />
+    <Content Include="7z\Lang\mng.txt" />
+    <Content Include="7z\Lang\mng2.txt" />
+    <Content Include="7z\Lang\mr.txt" />
+    <Content Include="7z\Lang\ms.txt" />
+    <Content Include="7z\Lang\nb.txt" />
+    <Content Include="7z\Lang\ne.txt" />
+    <Content Include="7z\Lang\nl.txt" />
+    <Content Include="7z\Lang\nn.txt" />
+    <Content Include="7z\Lang\pa-in.txt" />
+    <Content Include="7z\Lang\pl.txt" />
+    <Content Include="7z\Lang\ps.txt" />
+    <Content Include="7z\Lang\pt-br.txt" />
+    <Content Include="7z\Lang\pt.txt" />
+    <Content Include="7z\Lang\ro.txt" />
+    <Content Include="7z\Lang\ru.txt" />
+    <Content Include="7z\Lang\sa.txt" />
+    <Content Include="7z\Lang\si.txt" />
+    <Content Include="7z\Lang\sk.txt" />
+    <Content Include="7z\Lang\sl.txt" />
+    <Content Include="7z\Lang\sq.txt" />
+    <Content Include="7z\Lang\sr-spc.txt" />
+    <Content Include="7z\Lang\sr-spl.txt" />
+    <Content Include="7z\Lang\sv.txt" />
+    <Content Include="7z\Lang\ta.txt" />
+    <Content Include="7z\Lang\th.txt" />
+    <Content Include="7z\Lang\tr.txt" />
+    <Content Include="7z\Lang\tt.txt" />
+    <Content Include="7z\Lang\ug.txt" />
+    <Content Include="7z\Lang\uk.txt" />
+    <Content Include="7z\Lang\uz.txt" />
+    <Content Include="7z\Lang\va.txt" />
+    <Content Include="7z\Lang\vi.txt" />
+    <Content Include="7z\Lang\yo.txt" />
+    <Content Include="7z\Lang\zh-cn.txt" />
+    <Content Include="7z\Lang\zh-tw.txt" />
+    <Content Include="7z\License.txt" />
+    <Content Include="7z\readme.txt" />
+    <Content Include="7z\Uninstall.exe" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
