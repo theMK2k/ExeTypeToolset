@@ -36,7 +36,7 @@
 		Dim bmissingSearchPath As Boolean = True
 		Dim bShowHelpAndQuit As Boolean = False
 
-		Console.WriteLine("ExeTypeToolset v1.0 by MK2k")
+		Console.WriteLine("ExeTypeToolset v1.1 by MK2k")
 		Console.WriteLine()
 
 		For Each arg As String In Environment.GetCommandLineArgs
@@ -184,6 +184,11 @@
 		AppendTextToFile(opt_Outfile, "DIRECTORY	FILE	DOS	NONDOS	ERRORS")
 
 		AnalyzeDirectory(opt_SearchPath, 0)
+
+#If DEBUG Then
+		Console.WriteLine(ControlChars.CrLf & "DONE, please press a key")
+		Console.ReadKey()
+#End If
 	End Sub
 
 	Public Function CreateTempDir() As String
@@ -270,7 +275,8 @@
 		End If
 
 		If {".exe"}.Contains(extension) Then
-			AnalyzeExeFile(fullpath, level + 1, counter)
+			'AnalyzeExeFileWithDOSIDCLI(fullpath, level + 1, counter)
+			AnalyzeExeFileWithDOSFINDER(fullpath, level + 1, counter)
 			Return
 		End If
 
@@ -424,8 +430,7 @@
 		Return False
 	End Function
 
-
-	Public Sub AnalyzeExeFile(fullPath As String, level As Integer, ByRef counter As cls_Counter)
+	Public Sub AnalyzeExeFileWithDOSIDCLI(fullPath As String, level As Integer, ByRef counter As cls_Counter)
 		Dim isOriginal = False
 		If counter Is Nothing Then
 			isOriginal = True
@@ -472,6 +477,84 @@
 		Catch ex As Exception
 			counter.errors += 1
 
+		End Try
+
+		If isOriginal Then
+			counter = Nothing
+		End If
+
+		Return
+	End Sub
+
+	Public Sub AnalyzeExeFileWithDOSFINDER(fullPath As String, level As Integer, ByRef counter As cls_Counter)
+		Dim isOriginal = False
+		If counter Is Nothing Then
+			isOriginal = True
+			counter = New cls_Counter("", "")
+		End If
+
+		If Not Alphaleonis.Win32.Filesystem.File.Exists(fullPath) Then
+			counter.errors += 1
+			Return
+		End If
+
+		'TODO: Create temp folder
+		Dim tempDir As String = CreateTempDir()
+
+		Dim destinationFullPath As String = MKNetLib.cls_MKStringSupport.Clean_Right(tempDir, "\") & "\" & Alphaleonis.Win32.Filesystem.Path.GetFileName(fullPath)
+
+
+
+		'call dosidcli with fullPath
+		Try
+			Alphaleonis.Win32.Filesystem.File.Copy(fullPath, destinationFullPath)
+
+			Using process As New Process()
+				process.StartInfo.FileName = ".\dosfinder\dosfinder.exe"
+				process.StartInfo.WorkingDirectory = ".\dosfinder\"
+				process.StartInfo.Arguments = """" & tempDir & """" & " -p -t -i"
+				process.StartInfo.UseShellExecute = False
+				process.StartInfo.RedirectStandardOutput = True
+				process.Start()
+
+				' Synchronously read the standard output of the spawned process. 
+				Dim procReader As System.IO.StreamReader = process.StandardOutput
+				Dim output As String = procReader.ReadToEnd()
+
+				process.WaitForExit()
+
+				If output.Contains("MSDOS") OrElse output.Contains("DOS Executable") Then
+					counter.dos += 1
+					Console.ForegroundColor = ConsoleColor.Green
+					Console.WriteLine(GetIndent(level + 1) & " DOS! yay! \o/")
+					Console.ForegroundColor = ConsoleColor.Gray
+				ElseIf output.Contains("DIE:WIN") Then
+					counter.nondos += 1
+					Console.ForegroundColor = ConsoleColor.Blue
+					Console.WriteLine(GetIndent(level + 1) & " non-dos boo! :(")
+					Console.ForegroundColor = ConsoleColor.Gray
+				Else
+					Console.ForegroundColor = ConsoleColor.Red
+
+					Dim identifier As String = ":o"
+
+					If MKNetLib.cls_MKRegex.IsMatch(output, "[DIE:.*?]") Then
+						identifier = " " & MKNetLib.cls_MKRegex.GetMatches(output, "\[.*\]")(0).Value
+					End If
+
+					Console.WriteLine(GetIndent(level + 1) & " ERROR: not identifiable :" & identifier)
+					Console.ForegroundColor = ConsoleColor.Gray
+					counter.errors += 1
+				End If
+			End Using
+		Catch ex As Exception
+			counter.errors += 1
+		Finally
+			Try
+				MKNetLib.cls_MKFileSupport.Delete_Directory(tempDir)
+			Catch ex As Exception
+
+			End Try
 		End Try
 
 		If isOriginal Then

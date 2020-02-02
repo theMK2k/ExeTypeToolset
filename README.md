@@ -8,8 +8,9 @@ You can also let ExeTypeToolset move the original releases to different location
 
 ## Dependencies
 
--  **7zip** and **Iso7z** (included within 7z subdirectory) - which allow extraction of archives and cd images in order to find .exe files to analyze.
-- **dosidcli** (included) (https://github.com/theMK2k/DOSIDCLI) - a small command line tool which identifies an executable being DOS or SOMETHINGELSE
+-  **7zip** and **Iso7z** (included in the binary releases as 7z subdirectory) - which allow extraction of archives and cd images in order to find .exe files to analyze.
+- **dosfinder** (included in the binary releases as dosfinder subdirectory) - this tool by **anormal** utilizes itself multiple detection engines to identify executables
+- **dosidcli** (still included, but deprecated by **dosfinder**) (https://github.com/theMK2k/DOSIDCLI) - a small command line tool which identifies an executable being DOS or SOMETHINGELSE
 
 ## Command Line Options
 
